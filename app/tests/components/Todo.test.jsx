@@ -13,14 +13,10 @@ describe('Todo', () => {
   });
 
   it('should call onToggle prop with id on click', () => {
-    expect(Todo).toExist();
-  });
-
-  it('should call onToggle prop with id on click', () => {
     var todoData = {
       id: 199,
       text: 'write todo.test.jsx test',
-      completed: true
+      completed: true,
     };
     var spy = expect.createSpy();
     var todo = TestUtils.renderIntoDocument(<Todo {...todoData} onToggle={spy}/>);

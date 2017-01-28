@@ -11,7 +11,7 @@ var TodoApp = React.createClass({
     return {
       showCompleted: false,
       searchText: '',
-      todos: TodoAPI.getTodos()
+      todos: TodoAPI.getTodos(),
     };
   },
 
@@ -26,43 +26,44 @@ var TodoApp = React.createClass({
         {
           id: uuid(),
           text: text,
-          completed: false
-        }
-      ]
+          completed: false,
+        },
+      ],
     });
   },
 
   handleToggle: function (id) {
     var updatedTodos = this.state.todos.map((todo) => {
 
-      if (todo.id === id){
+      if (todo.id === id) {
         todo.completed = !todo.completed;
       }
 
       return todo;
     });
     this.setState({
-      todos: updatedTodos
+      todos: updatedTodos,
     });
   },
 
   handleSearch: function (showCompleted, searchText) {
     this.setState({
       showCompleted: showCompleted,
-      searchText: searchText.toLowerCase()
+      searchText: searchText.toLowerCase(),
     });
   },
 
   render: function () {
-    var { todos } = this.state;
+    var { todos, showCompleted, searchText } = this.state;
+    var filteredTodos = TodoAPI.filterTodos(todos, showCompleted, searchText);
     return (
       <div>
         <TodoSearch onSearch={this.handleSearch}/>
-        <TodoList todos={todos} onToggle={this.handleToggle}/>
+        <TodoList todos={filteredTodos} onToggle={this.handleToggle}/>
         <AddTodo onAddTodo={this.handleAddTodo}/>
       </div>
     );
-  }
+  },
 });
 
 module.exports = TodoApp;
