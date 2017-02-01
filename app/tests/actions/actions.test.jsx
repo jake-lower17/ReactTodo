@@ -15,10 +15,15 @@ describe('actions', () => {
   it('should generate add todo', () => {
     var action = {
       type: 'ADD_TODO',
-      text: 'Feed the cat',
+      todo: {
+        id: 'abc123',
+        text: 'something to do',
+        completed: false,
+        createdAt: 12930,
+      },
     };
 
-    var res = actions.addTodo(action.text);
+    var res = actions.addTodo(action.todo);
     expect(res).toEqual(action);
   });
 
@@ -29,7 +34,7 @@ describe('actions', () => {
       completed: false,
       completedAt: undefined,
       createdAt: 3000,
-    }]
+    }];
 
     var action = {
       type: 'ADD_TODOS',
