@@ -30,7 +30,6 @@ export var startAddTodo = (text) => {
         createdAt: moment().unix(),
         completedAt: null,
       };
-    console.log(todo);
     var todoRef = firebaseRef.child('todos').push(todo);
 
     return todoRef.then(() => {
@@ -49,9 +48,46 @@ export var addTodos = (todos) => {
   };
 };
 
-export var toggleTodo = (id) => {
+export var startAddTodos = () => {
+  return (dispatch, getState) => {
+    var todosRef = firebaseRef.child('todos');
+    return todosRef.once('value').then((snapshot) => {
+      var todos = snapshot.val() || {};
+      var parsedTodos = [];
+
+      Object.keys(todos).forEach((todoID) => {
+        parsedTodos.push({
+          id: todoID,
+          ...todos[todoID],
+        });
+      });
+
+      dispatch(addTodos(parsedTodos));
+      console.log('got database ', todos);
+    }, (e) => {
+      console.log('unable to fetch data', e);
+    });
+  };
+};
+
+export var updateTodo = (id, updates) => {
   return {
-    type: 'TOGGLE_TODO',
+    type: 'UPDATE_TODO',
     id: id,
+    updates: updates,
+  };
+};
+
+export var startToggleTodo = (id, completed) => {
+  return (dispatch, getState) => {
+    var todoRef = firebaseRef.child('todos/' + id);
+    var updates = {
+      completed: completed,
+      completedAt: completed ? moment().unix() : null,
+    };
+
+    return todoRef.update(updates).then(() => {
+      dispatch(updateTodo(id, updates));
+    });
   };
 };
