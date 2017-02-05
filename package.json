@@ -7,6 +7,9 @@
     "test": "NODE_ENV=test karma start",
     "start": "npm run build && node server.js"
   },
+  "engines": {
+  "node": "4.3.0"
+  },
   "author": "Jacob Lower",
   "license": "ISC",
   "dependencies": {
