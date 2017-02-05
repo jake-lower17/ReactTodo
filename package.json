@@ -7,9 +7,6 @@
     "test": "NODE_ENV=test karma start",
     "start": "npm run build && node server.js"
   },
-  "engines": {
-  "node": "4.3.0"
-  },
   "author": "Jacob Lower",
   "license": "ISC",
   "dependencies": {
@@ -19,7 +16,6 @@
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
     "react-router": "^2.0.0",
-    "redux-mock-store": "^1.2.2",
     "babel-core": "^6.5.1",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "^6.5.0",
@@ -41,7 +37,8 @@
     "sass-loader": "^4.1.1",
     "script-loader": "^0.6.1",
     "style-loader": "^0.13.0",
-    "webpack": "^1.12.13"
+    "webpack": "^1.12.13",
+    "redux-mock-store": "^1.2.2"
   },
   "devDependencies": {
     "karma": "^0.13.22",
