@@ -4,11 +4,10 @@ try {
 
   // Initialize Firebase
   var config = {
-    apiKey: 'AIzaSyA_TAmu2ovxTzWNDS4uWnVDDfK4wTlhjic',
-    authDomain: 'todo-app-8308a.firebaseapp.com',
-    databaseURL: 'https://todo-app-8308a.firebaseio.com',
-    storageBucket: 'todo-app-8308a.appspot.com',
-    messagingSenderId: '80769008489',
+    apiKey: process.env.API_KEY,
+    authDomain: process.env.AUTH_DOMAIN,
+    databaseURL: process.env.DATABASE_URL,
+    storageBucket: process.env.STORAGE_BUCKET,
   };
   firebase.initializeApp(config);
   var firebaseRef = firebase.database().ref();
