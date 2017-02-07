@@ -10,7 +10,6 @@ try {
     storageBucket: process.env.STORAGE_BUCKET,
     messagingSenderId: process.env.MESSAGE_SENDER
   };
-  debugger;
   firebase.initializeApp(config);
   var firebaseRef = firebase.database().ref();
 }catch (e) {
