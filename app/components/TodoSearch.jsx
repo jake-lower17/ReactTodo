@@ -31,7 +31,7 @@ export class TodoSearch extends React.Component {
               }}
 
             />
-            Show bought items.
+            Show completed todos
           </label>
         </div>
       </div>
